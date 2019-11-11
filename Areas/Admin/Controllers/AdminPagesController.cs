@@ -87,9 +87,34 @@ namespace Online_Shopping.Areas.Admin.Controllers
             }
             //Save the temporary message
 
-            TempData["Success"] = "You have successfully added a new page!";
+            TempData["SM"] = "You have successfully added a new page!";
             //Redirect the page
             return RedirectToAction("CreatePage");
         }
+
+        //Edit Admin Pages (Edit Functionality).
+        public ActionResult EditPage(int id)
+        {
+            //Declare the page view model
+            AdminPagesVm model;
+
+            using (MyDb db = new MyDb())
+            {
+                //Get the Page
+
+                PageDTO dTO = db.Pages.Find(id);
+                //Confirm if the page exist
+
+                if (dTO == null)
+                {
+                    return Content("The Page requested does not exist!");
+                }
+                //Initialize the page view model
+                model = new AdminPagesVm(dTO);
+            }
+            //Return the view with the model
+            return View(model);
+        }
     }
+
 }
