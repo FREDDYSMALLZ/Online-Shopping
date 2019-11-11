@@ -160,6 +160,7 @@
     <Content Include="Areas\Admin\Views\AdminPages\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AdminPages\CreatePage.cshtml" />
     <Content Include="Areas\Admin\Views\AdminPages\EditPage.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminPages\PageDetails.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -167,6 +167,31 @@ namespace Online_Shopping.Areas.Admin.Controllers
             //Redirect the pages
             return RedirectToAction("EditPage");
         }
+
+        public ActionResult PageDetails(int id)
+        {
+            //Declare the Page View model
+            AdminPagesVm model;
+            
+            using (MyDb db = new MyDb())
+            {
+                //Get the Page using the Page Id
+
+                PageDTO dTO = db.Pages.Find(id);
+
+                //Confirm if the page necessarily exist
+                if (dTO == null)
+                {
+                    return Content("The Page requested does not exist");
+
+                }
+
+                //Initialize the Page view model
+                model = new AdminPagesVm(dTO);
+            }
+                //Return the view with the model
+                return View(model);
+        }
     }
 
 }
