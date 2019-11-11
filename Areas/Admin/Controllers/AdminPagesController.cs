@@ -27,5 +27,11 @@ namespace Online_Shopping.Areas.Admin.Controllers
             //Return view with the list
             return View(pageslist);
         }
+        
+        //Get admin pages and retun a view
+        public ActionResult CreatePage()
+        {
+            return View();
+        }
     }
 }

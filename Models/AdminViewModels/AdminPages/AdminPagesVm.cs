@@ -1,6 +1,7 @@
 ﻿using Online_Shopping.Models.AdminData;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -32,6 +33,7 @@ namespace Online_Shopping.Models.AdminViewModels.AdminPages
         [StringLength(int.MaxValue, MinimumLength = 3)]
         public string Body { get; set; }
         public int Sorting { get; set; }
+        [DisplayName("Page Side Bar")]
         public bool HasSidebar { get; set; }
     }
 
