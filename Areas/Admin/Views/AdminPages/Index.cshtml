@@ -20,8 +20,8 @@ else
 {
 
 
-    <table class="table">
-        <tr>
+    <table class="table sorting" id="AdminPages">
+        <tr class="home">
             <th>
                 Title
             </th>
@@ -36,7 +36,7 @@ else
 
         @foreach (var item in Model)
         {
-            <tr>
+            <tr id="id_@item.Id" class="@item.Slug">
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
@@ -61,15 +61,42 @@ else
 
     </table>
 }
-@section scripts{
-    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+@section Scripts {
+    
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
     <script>
+
         $(function () {
 
+            /*
+            * Delete the Page from the website
+            */
+
             $("a.delete").click(function () {
-                if (!confirm("Please Confirm page deletion")) return false;
+                if (!confirm("Confirm page deletion")) return false;
+            });
+
+
+            /*
+            * Organize the pages once deletion has occured.
+            */
+
+            $("table#pages tbody").sortable({
+                items: "tr:not(.home)",
+                placeholder: "ui-state-highlight",
+                update: function () {
+                    var ids = $("table#pages tbody").sortable("serialize");
+                    var url = "/Admin/AdminPages/ReorderPages";
+
+                    $.post(url, ids, function (data) {
+                    });
+                }
             });
 
         });
-    </script>
+
+    </script>    
+    
 }

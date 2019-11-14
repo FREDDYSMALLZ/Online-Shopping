@@ -208,6 +208,34 @@ namespace Online_Shopping.Areas.Admin.Controllers
             //and Redirect the page after deletion
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public void ReorderPages(int [] id)
+        {
+            using (MyDb db = new MyDb())
+            {
+                //The the initial page count
+                int count = 1; //since home page is 0 hence other pages will start at 1
+
+                //Declare Page DTO
+                PageDTO dto;
+                //Set Sorting for each page
+
+                foreach (var pageId in id)
+                {
+                    dto = db.Pages.Find(pageId);
+                    dto.Sorting = count;
+
+
+                    db.SaveChanges();
+
+                    count++;
+
+
+                }
+            }
+        }
+
     }
 
 }
