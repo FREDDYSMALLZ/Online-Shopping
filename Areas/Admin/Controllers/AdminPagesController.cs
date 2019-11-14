@@ -192,6 +192,22 @@ namespace Online_Shopping.Areas.Admin.Controllers
                 //Return the view with the model
                 return View(model);
         }
+
+        //Delete Page functionality
+        public ActionResult DeletePage(int id)
+        {
+            using (MyDb db = new MyDb())
+            {
+                //Get the Page
+                PageDTO dTO = db.Pages.Find(id);
+                //Remove the Page
+                db.Pages.Remove(dTO);
+                //Save the Page
+                db.SaveChanges();
+            }
+            //and Redirect the page after deletion
+            return RedirectToAction("Index");
+        }
     }
 
 }
